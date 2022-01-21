@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -317,29 +318,37 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
                 finish();
             }
         } else {
-            if (resultCode == RESULT_OK && requestCode == ImagePicker.REQUEST_CODE_TAKE) {
-                ImageItem imageItem = new ImageItem();
-                imageItem.uri = imagePicker.getUri();
-                if (!imagePicker.isMultiMode()) {
-                    if (imagePicker.isFreeCrop) {
-                        imagePicker.clearSelectedImages();
-                        imagePicker.addSelectedImageItem(0, imageItem, true);
-                        Intent intent = new Intent(ImageGridActivity.this, FreeCropActivity.class);
-                        startActivityForResult(intent, ImagePicker.REQUEST_CODE_CROP);
-                        return;
-                    } else if (imagePicker.isCrop()) {
-                        imagePicker.clearSelectedImages();
-                        imagePicker.addSelectedImageItem(0, imageItem, true);
-                        Intent intent = new Intent(ImageGridActivity.this, ImageCropActivity.class);
-                        startActivityForResult(intent, ImagePicker.REQUEST_CODE_CROP);
-                        return;
+            if (requestCode == ImagePicker.REQUEST_CODE_TAKE) {
+                if(resultCode == RESULT_OK) {
+                    ImageItem imageItem = new ImageItem();
+                    imageItem.uri = imagePicker.getUri();
+                    if (!imagePicker.isMultiMode()) {
+                        if (imagePicker.isFreeCrop) {
+                            imagePicker.clearSelectedImages();
+                            imagePicker.addSelectedImageItem(0, imageItem, true);
+                            Intent intent = new Intent(ImageGridActivity.this, FreeCropActivity.class);
+                            startActivityForResult(intent, ImagePicker.REQUEST_CODE_CROP);
+                            return;
+                        } else if (imagePicker.isCrop()) {
+                            imagePicker.clearSelectedImages();
+                            imagePicker.addSelectedImageItem(0, imageItem, true);
+                            Intent intent = new Intent(ImageGridActivity.this, ImageCropActivity.class);
+                            startActivityForResult(intent, ImagePicker.REQUEST_CODE_CROP);
+                            return;
+                        }
+                    }
+                    imagePicker.addSelectedImageItem(0, imageItem, true);
+                    Intent intent = new Intent();
+                    intent.putExtra(ImagePicker.EXTRA_RESULT_ITEMS, imagePicker.getSelectedImages());
+                    setResult(ImagePicker.RESULT_CODE_ITEMS, intent);
+                    finish();
+                }else{
+                    if(imagePicker.getUri() != null) {
+                        //https://github.com/CysionLiu/ImagePicker/issues/74
+                        int result = getContentResolver().delete(imagePicker.getUri(), null, null);
+                        Log.i("DEBUG",">>>>>>>>>>>>>>>>result = " + result);
                     }
                 }
-                imagePicker.addSelectedImageItem(0, imageItem, true);
-                Intent intent = new Intent();
-                intent.putExtra(ImagePicker.EXTRA_RESULT_ITEMS, imagePicker.getSelectedImages());
-                setResult(ImagePicker.RESULT_CODE_ITEMS, intent);
-                finish();
             } else if (directPhoto) {
                 finish();
             }

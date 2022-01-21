@@ -10,6 +10,7 @@ import android.text.TextUtils;
 
 import com.lzy.imagepicker.bean.ImageFolder;
 import com.lzy.imagepicker.bean.ImageItem;
+import com.lzy.imagepicker.util.BitmapUtil;
 import com.lzy.imagepicker.util.Utils;
 
 import java.io.File;
@@ -44,7 +45,8 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
             MediaStore.Images.Media.HEIGHT,
             MediaStore.Images.Media.MIME_TYPE,
             MediaStore.Images.Media.DATE_ADDED,
-            MediaStore.Images.Media._ID
+            MediaStore.Images.Media._ID,
+            MediaStore.Images.Media.ORIENTATION
     };
     private String[] mCurProjection = null;
 
@@ -122,6 +124,10 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
             if(Build.VERSION.SDK_INT<Build.VERSION_CODES.Q){
                 File imageFile = new File(relativePath);
                 File imageParentFile = imageFile.getParentFile();
+                if(imageParentFile == null){
+                    //https://github.com/CysionLiu/ImagePicker/pull/49/commits/ad737d5ad5e3f09fb1410b49181c6da48b4bae69
+                    continue;
+                }
                 imageFolder.name =imageParentFile.getName() ;
                 imageFolder.path = imageParentFile.getAbsolutePath();
             }else{

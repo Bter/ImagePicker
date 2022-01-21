@@ -25,7 +25,8 @@ public class ImageItem implements Serializable, Parcelable {
         if (o instanceof ImageItem) {
             ImageItem item = (ImageItem) o;
             if(uri!=null){
-                return this.uri==item.uri;
+                //https://github.com/CysionLiu/ImagePicker/issues/78
+                return this.uri.equals(item.uri);
             }
             return super.equals(o);
         }

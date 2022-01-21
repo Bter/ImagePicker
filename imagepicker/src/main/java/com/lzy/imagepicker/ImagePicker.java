@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -62,6 +63,8 @@ public class ImagePicker {
     private static ImagePicker mInstance;
     private Uri mUri;
     private boolean isOrigin;
+
+    private int activityOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
 
 
     private ImagePicker() {
@@ -156,6 +159,14 @@ public class ImagePicker {
 
     public void setOrigin(boolean aOrigin) {
         isOrigin = aOrigin;
+    }
+
+    public int getActivityOrientation() {
+        return activityOrientation;
+    }
+
+    public void setActivityOrientation(int activityOrientation) {
+        this.activityOrientation = activityOrientation;
     }
 
     public Uri getUri() {

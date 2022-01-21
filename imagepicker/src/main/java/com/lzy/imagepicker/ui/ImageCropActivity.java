@@ -3,7 +3,9 @@ package com.lzy.imagepicker.ui;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.ColorSpace;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -49,6 +51,12 @@ public class ImageCropActivity extends ImageBaseActivity implements View.OnClick
         mOutputY = imagePicker.getOutPutY();
         mIsSaveRectangle = imagePicker.isSaveRectangle();
         mImageItems = imagePicker.getSelectedImages();
+        if(mImageItems.size() == 0){
+            //https://github.com/CysionLiu/ImagePicker/pull/49/commits/f044f49bc527c1730204e36ee4cfe5d18be15131
+            setResult(RESULT_CANCELED);
+            finish();
+            return;
+        }
         Uri uri = mImageItems.get(0).uri;
 
         mCropImageView.setFocusStyle(imagePicker.getStyle());
@@ -61,8 +69,18 @@ public class ImageCropActivity extends ImageBaseActivity implements View.OnClick
             BitmapFactory.decodeStream(getContentResolver().openInputStream(uri), null,options);
             DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
             options.inSampleSize = calculateInSampleSize(options, displayMetrics.widthPixels, displayMetrics.heightPixels);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                //https://github.com/CysionLiu/ImagePicker/issues/70
+                options.inPreferredColorSpace = ColorSpace.get(ColorSpace.Named.SRGB);//增加支持广色域
+            }
             options.inJustDecodeBounds = false;
             mBitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri), null,options);
+            if(mBitmap == null){
+                //https://github.com/CysionLiu/ImagePicker/pull/49/commits/f044f49bc527c1730204e36ee4cfe5d18be15131
+                setResult(RESULT_CANCELED);
+                finish();
+                return;
+            }
             mCropImageView.setImageBitmap(mCropImageView.rotate(mBitmap, BitmapUtil.getBitmapDegree(this,mImageItems.get(0).uri)));
         } catch (Exception aE) {
             aE.printStackTrace();

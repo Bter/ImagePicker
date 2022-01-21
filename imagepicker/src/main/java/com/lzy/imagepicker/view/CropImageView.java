@@ -415,6 +415,8 @@ public class CropImageView extends AppCompatImageView {
                 }
             } catch (OutOfMemoryError ex) {
                 ex.printStackTrace();
+            }catch (Exception e){
+                e.printStackTrace();
             }
         }
         return bitmap;
@@ -470,6 +472,11 @@ public class CropImageView extends AppCompatImageView {
         if (mSaving) return;
         mSaving = true;
         final Bitmap croppedImage = getCropBitmap(expectWidth, exceptHeight, isSaveRectangle);
+        if(croppedImage == null){
+            //https://github.com/CysionLiu/ImagePicker/pull/49/commits/6167e7e6b0b9407f89b3a7d5b4196e59c11fb3ba
+            mSaving = false;
+            return;
+        }
         Bitmap.CompressFormat outputFormat = Bitmap.CompressFormat.JPEG;
         File saveFile = createFile(folder, "IMG_", ".jpg");
         if (mStyle == CropImageView.Style.CIRCLE && !isSaveRectangle) {
@@ -502,17 +509,19 @@ public class CropImageView extends AppCompatImageView {
     private void saveOutput(Bitmap croppedImage, Bitmap.CompressFormat outputFormat, File saveFile) {
         OutputStream outputStream = null;
         try {
+            //https://github.com/CysionLiu/ImagePicker/pull/49/commits/48c6dd9fd9249b026809dddb1d584859573367a3
+            saveFile.getParentFile().mkdirs();
             outputStream = getContext().getContentResolver().openOutputStream(Uri.fromFile(saveFile));
             if (outputStream != null) croppedImage.compress(outputFormat, 90, outputStream);
             Message.obtain(mHandler, SAVE_SUCCESS, saveFile).sendToTarget();
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             Message.obtain(mHandler, SAVE_ERROR, saveFile).sendToTarget();
         } finally {
             if (outputStream != null) {
                 try {
                     outputStream.close();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
