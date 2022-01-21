@@ -35,7 +35,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
             MediaStore.Images.Media.HEIGHT,
             MediaStore.Images.Media.MIME_TYPE,
             MediaStore.Images.Media.DATE_ADDED,
-            MediaStore.Images.Media._ID,
+            MediaStore.Images.Media._ID
     };
     private final String[] IMAGE_PROJECTION_Q = {
             MediaStore.Images.Media.DISPLAY_NAME,
@@ -45,8 +45,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
             MediaStore.Images.Media.HEIGHT,
             MediaStore.Images.Media.MIME_TYPE,
             MediaStore.Images.Media.DATE_ADDED,
-            MediaStore.Images.Media._ID,
-            MediaStore.Images.Media.ORIENTATION
+            MediaStore.Images.Media._ID
     };
     private String[] mCurProjection = null;
 
