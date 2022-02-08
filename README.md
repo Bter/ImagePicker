@@ -17,13 +17,7 @@ Android自定义相册，仿微信UI，实现了拍照、图片选择（单选/�
 
 ```
 
-//老版本，非androidx，targetsdk<29:
-
-api 'com.cysion:ImagePicker:1.2.0'
-
------------
-
-若使用androidx:
+使用androidx:
     api 'com.github.Bter:ImagePicker:1.2.3'
 注意，Android Q 对存储框架有较大改动，最主要的是无法通过文件路径获得非*应用专有文件*。
 在本版本库中，也完全放弃了文件路径的方式，全部是以Uri的方式提供文件访问。
@@ -40,10 +34,8 @@ api 'com.cysion:ImagePicker:1.2.0'
 对于Android Studio(建议用3.0版本+)的用户，可以选择添加:
 
 ```
-//老版本至此不再维护
-api 'com.cysion:ImagePicker:1.2.0'
 
-//若使用androidx，则需要这样添加依赖：
+//使用androidx，则需要这样添加依赖：
 api 'com.github.Bter:ImagePicker:1.2.3'
 
 ---
