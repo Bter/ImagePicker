@@ -188,6 +188,14 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 ```
 
 ## 更新日志
+V1.2.3 基于1.2.1.Q的BUG修复，依赖api 'com.github.Bter:ImagePicker:1.2.3'
+  * 增加选择器Activity方向设置。
+  * 修复[Issues#49](https://github.com/CysionLiu/ImagePicker/pull/49/commits/ad737d5ad5e3f09fb1410b49181c6da48b4bae69)的bug。
+  * 修复[裁剪BUG](https://github.com/CysionLiu/ImagePicker/pull/49/commits/6167e7e6b0b9407f89b3a7d5b4196e59c11fb3ba)或[裁剪BUG2](https://github.com/CysionLiu/ImagePicker/pull/49/commits/48c6dd9fd9249b026809dddb1d584859573367a3)。
+  * [修复点击拍照后返回，多出一张空白图片的问题](https://github.com/CysionLiu/ImagePicker/issues/74)。
+  * [修复同时打开 两个ImageCorpActivity 的时候可能崩溃的问题](https://github.com/CysionLiu/ImagePicker/pull/49/commits/f044f49bc527c1730204e36ee4cfe5d18be15131)。
+  * [修复Issues#70](https://github.com/CysionLiu/ImagePicker/issues/70)。
+  * [修复预览图片页面显示点击选择后，整体数量显示错误](https://github.com/CysionLiu/ImagePicker/issues/78)。
 
 
 V1.2.1
