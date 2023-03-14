@@ -3,8 +3,9 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 29
 
-    //https://github.com/hackware1993/MagicIndicator
-    //https://github.com/Bter/MagicIndicator
+    //图片选择器
+    //https://github.com/CysionLiu/ImagePicker
+    //https://github.com/Bter/ImagePicker
 
     defaultConfig {
         minSdkVersion 14
