@@ -191,6 +191,8 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 V1.2.4
   * 增加未选择任何项时也可以点击完成。
   * 修复当达到最大数量时，依然可以拍照突破最大数量限制的问题。
+
+
 V1.2.3 基于1.2.1.Q的BUG修复
   * 增加选择器Activity方向设置。
   * 修复[Issues#49](https://github.com/CysionLiu/ImagePicker/pull/49/commits/ad737d5ad5e3f09fb1410b49181c6da48b4bae69)的bug。
