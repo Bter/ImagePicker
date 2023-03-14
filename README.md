@@ -36,7 +36,7 @@ Android自定义相册，仿微信UI，实现了拍照、图片选择（单选/�
 ```
 
 //使用androidx，则需要这样添加依赖：
-api 'com.github.Bter:ImagePicker:1.2.3'
+api 'com.github.Bter:ImagePicker:1.2.4'
 
 ---
 
@@ -188,7 +188,10 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 ```
 
 ## 更新日志
-V1.2.3 基于1.2.1.Q的BUG修复，依赖api 'com.github.Bter:ImagePicker:1.2.3'
+V1.2.4
+  * 增加未选择任何项时也可以点击完成。
+  * 修复当达到最大数量时，依然可以拍照突破最大数量限制的问题。
+V1.2.3 基于1.2.1.Q的BUG修复
   * 增加选择器Activity方向设置。
   * 修复[Issues#49](https://github.com/CysionLiu/ImagePicker/pull/49/commits/ad737d5ad5e3f09fb1410b49181c6da48b4bae69)的bug。
   * 修复[裁剪BUG](https://github.com/CysionLiu/ImagePicker/pull/49/commits/6167e7e6b0b9407f89b3a7d5b4196e59c11fb3ba)或[裁剪BUG2](https://github.com/CysionLiu/ImagePicker/pull/49/commits/48c6dd9fd9249b026809dddb1d584859573367a3)。
