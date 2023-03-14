@@ -182,6 +182,11 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
             mItemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    int selectLimit = imagePicker.getSelectLimit();
+                    if(mSelectedImages.size() >= selectLimit){
+                        InnerToaster.obj(mActivity).show(mActivity.getString(R.string.ip_select_limit, selectLimit));
+                        return;
+                    }
                     if (!((ImageBaseActivity) mActivity).checkPermission(Manifest.permission.CAMERA)) {
                         ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.CAMERA}, ImageGridActivity.REQUEST_PERMISSION_CAMERA);
                     } else {

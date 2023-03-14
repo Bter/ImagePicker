@@ -291,11 +291,12 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
             mBtnOk.setTextColor(ContextCompat.getColor(this, R.color.ip_text_primary_inverted));
         } else {
             mBtnOk.setText(getString(R.string.ip_complete));
-            mBtnOk.setEnabled(false);
+            mBtnOk.setEnabled(imagePicker.isMultiMode());
             mBtnPre.setEnabled(false);
             mBtnPre.setText(getResources().getString(R.string.ip_preview));
             mBtnPre.setTextColor(ContextCompat.getColor(this, R.color.ip_text_secondary_inverted));
-            mBtnOk.setTextColor(ContextCompat.getColor(this, R.color.ip_text_secondary_inverted));
+//            mBtnOk.setTextColor(ContextCompat.getColor(this, R.color.ip_text_secondary_inverted));
+            mBtnOk.setTextColor(ContextCompat.getColor(this, R.color.ip_text_primary_inverted));
         }
         for (int i = imagePicker.isShowCamera() ? 1 : 0; i < mRecyclerAdapter.getItemCount(); i++) {
             if (mRecyclerAdapter.getItem(i).uri != null && mRecyclerAdapter.getItem(i).uri.equals(item.uri)) {
