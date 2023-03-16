@@ -11,7 +11,7 @@ public interface ImageLoader extends Serializable {
 
     void displayImage(Activity activity, Uri uri, ImageView imageView, int width, int height);
 
-    default void onViewRecycled(Activity activity,ImageView imageView){}
+    void onViewRecycled(Activity activity, ImageView imageView);
 
     void clearMemoryCache();
 }

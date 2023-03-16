@@ -30,6 +30,12 @@ public class GlideImageLoader implements ImageLoader {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
                 .into(imageView);
     }
+
+    @Override
+    public void onViewRecycled(Activity activity, ImageView imageView) {
+
+    }
+
     @Override
     public void clearMemoryCache() {
     }

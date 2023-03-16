@@ -34,6 +34,11 @@ public class PicassoImageLoader implements ImageLoader {
     }
 
     @Override
+    public void onViewRecycled(Activity activity, ImageView imageView) {
+
+    }
+
+    @Override
     public void clearMemoryCache() {
     }
 }

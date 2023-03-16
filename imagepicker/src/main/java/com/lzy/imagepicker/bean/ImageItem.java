@@ -73,7 +73,7 @@ public class ImageItem implements Serializable, Parcelable {
         this.uri = in.readParcelable(Uri.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<ImageItem> CREATOR = new Parcelable.Creator<ImageItem>() {
+    public static final Creator<ImageItem> CREATOR = new Creator<ImageItem>() {
         @Override
         public ImageItem createFromParcel(Parcel source) {
             return new ImageItem(source);

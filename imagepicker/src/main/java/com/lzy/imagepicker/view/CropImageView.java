@@ -450,7 +450,7 @@ public class CropImageView extends AppCompatImageView {
             bitmap = Bitmap.createBitmap(bitmap, left, top, width, height);
             if (expectWidth != width || exceptHeight != height) {
                 bitmap = Bitmap.createScaledBitmap(bitmap, expectWidth, exceptHeight, true);
-                if (mStyle == CropImageView.Style.CIRCLE && !isSaveRectangle) {
+                if (mStyle == Style.CIRCLE && !isSaveRectangle) {
                     int length = Math.min(expectWidth, exceptHeight);
                     int radius = length / 2;
                     Bitmap circleBitmap = Bitmap.createBitmap(length, length, Bitmap.Config.ARGB_8888);
@@ -479,7 +479,7 @@ public class CropImageView extends AppCompatImageView {
         }
         Bitmap.CompressFormat outputFormat = Bitmap.CompressFormat.JPEG;
         File saveFile = createFile(folder, "IMG_", ".jpg");
-        if (mStyle == CropImageView.Style.CIRCLE && !isSaveRectangle) {
+        if (mStyle == Style.CIRCLE && !isSaveRectangle) {
             outputFormat = Bitmap.CompressFormat.PNG;
             saveFile = createFile(folder, "IMG_", ".png");
         }

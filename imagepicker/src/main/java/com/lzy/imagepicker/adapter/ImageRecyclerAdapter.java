@@ -2,6 +2,7 @@ package com.lzy.imagepicker.adapter;
 
 import android.Manifest;
 import android.app.Activity;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.lzy.imagepicker.view.SuperCheckBox;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
@@ -83,11 +85,12 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public void onViewRecycled(@NonNull ViewHolder holder) {
         super.onViewRecycled(holder);
         if(imagePicker.getImageLoader() != null){
-            if (holder instanceof ImageViewHolder){
+            if (holder instanceof ImageViewHolder && !mActivity.isDestroyed()){
                 imagePicker.getImageLoader().onViewRecycled(mActivity,((ImageViewHolder)holder).ivThumb);
             }
         }

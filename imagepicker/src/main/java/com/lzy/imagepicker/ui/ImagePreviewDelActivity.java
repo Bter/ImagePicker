@@ -92,11 +92,11 @@ public class ImagePreviewDelActivity extends ImagePreviewBaseActivity implements
     @Override
     public void onImageSingleTap() {
         if (topBar.getVisibility() == View.VISIBLE) {
-            topBar.setAnimation(AnimationUtils.loadAnimation(this, com.lzy.imagepicker.R.anim.top_out));
+            topBar.setAnimation(AnimationUtils.loadAnimation(this, R.anim.top_out));
             topBar.setVisibility(View.GONE);
             tintManager.setStatusBarTintResource(Color.TRANSPARENT);
         } else {
-            topBar.setAnimation(AnimationUtils.loadAnimation(this, com.lzy.imagepicker.R.anim.top_in));
+            topBar.setAnimation(AnimationUtils.loadAnimation(this, R.anim.top_in));
             topBar.setVisibility(View.VISIBLE);
             tintManager.setStatusBarTintResource(R.color.ip_color_primary_dark);
         }

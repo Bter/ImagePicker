@@ -2266,7 +2266,7 @@ import io.reactivex.functions.Consumer;
   /**
    * Set compress format for output
    *
-   * @param format compress format{@link android.graphics.Bitmap.CompressFormat}
+   * @param format compress format{@link Bitmap.CompressFormat}
    */
   public void setCompressFormat(Bitmap.CompressFormat format) {
     mCompressFormat = format;
@@ -2517,7 +2517,7 @@ import io.reactivex.functions.Consumer;
       out.writeInt(outputImageHeight);
     }
 
-    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+    public static final Creator CREATOR = new Creator() {
       public SavedState createFromParcel(final Parcel inParcel) {
         return new SavedState(inParcel);
       }

@@ -53,7 +53,7 @@ public class ImagePicker {
     private CropImageView.Style style = CropImageView.Style.RECTANGLE;
     private File cropCacheFolder;
 
-    public FreeCropImageView.CropMode mFreeCropMode = com.isseiaoki.simplecropview.FreeCropImageView.CropMode.FREE;
+    public FreeCropImageView.CropMode mFreeCropMode = FreeCropImageView.CropMode.FREE;
     public boolean isFreeCrop = false;
     private ArrayList<ImageItem> mSelectedImages = new ArrayList<>();
     private List<ImageFolder> mImageFolders;

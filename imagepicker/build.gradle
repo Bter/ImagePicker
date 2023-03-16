@@ -11,7 +11,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 29
         versionCode 1
-        versionName "1.2.8"
+        versionName "1.2.9"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {

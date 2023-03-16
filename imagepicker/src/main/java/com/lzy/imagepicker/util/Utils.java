@@ -2,6 +2,7 @@ package com.lzy.imagepicker.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Environment;
 import android.util.DisplayMetrics;
@@ -13,18 +14,53 @@ import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Utils {
 
     public static int getStatusHeight(Context context) {
         int statusHeight = -1;
-        try {
-            Class<?> clazz = Class.forName("com.android.internal.R$dimen");
-            Object object = clazz.newInstance();
-            int height = Integer.parseInt(clazz.getField("status_bar_height").get(object).toString());
-            statusHeight = context.getResources().getDimensionPixelSize(height);
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        List<Exception> errors = new ArrayList<>();
+        Resources resources = Resources.getSystem();
+        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+        if(resourceId == 0){
+            try {
+                Class<?> clazz = Class.forName("com.android.internal.R$dimen");
+                Object object = null;
+                try {
+                    object = clazz.newInstance();
+                }catch (Exception e){
+                    errors.add(e);
+                }
+                resourceId = Integer.parseInt(clazz.getDeclaredField("status_bar_height").get(object).toString());
+            }catch (Exception e){
+                errors.add(e);
+            }
         }
+
+        try {
+            statusHeight = resources.getDimensionPixelSize(resourceId);
+        }catch (Exception e){
+            errors.add(e);
+        }
+
+        if(statusHeight <= 0) {
+            try {
+                statusHeight = context.getResources().getDimensionPixelSize(resourceId);
+            } catch (Exception e) {
+                errors.add(e);
+            }
+        }
+
+        if(statusHeight <= 0) {
+            for(Exception e : errors){
+                e.printStackTrace();
+            }
+            statusHeight = dp2px(context,25);
+        }
+
         return statusHeight;
     }
 
