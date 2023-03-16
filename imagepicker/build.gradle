@@ -11,7 +11,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 29
         versionCode 1
-        versionName "1.2.4"
+        versionName "1.2.7"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -24,6 +24,11 @@ android {
         abortOnError false
     }
 
+    //使用JAVA8
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {

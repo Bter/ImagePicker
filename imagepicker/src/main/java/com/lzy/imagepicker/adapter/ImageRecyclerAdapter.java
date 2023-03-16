@@ -19,6 +19,7 @@ import com.lzy.imagepicker.view.SuperCheckBox;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
@@ -79,6 +80,16 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
             ((CameraViewHolder)holder).bindCamera();
         }else if (holder instanceof ImageViewHolder){
             ((ImageViewHolder)holder).bind(position);
+        }
+    }
+
+    @Override
+    public void onViewRecycled(@NonNull ViewHolder holder) {
+        super.onViewRecycled(holder);
+        if(imagePicker.getImageLoader() != null){
+            if (holder instanceof ImageViewHolder){
+                imagePicker.getImageLoader().onViewRecycled(((ImageViewHolder)holder).ivThumb);
+            }
         }
     }
 
