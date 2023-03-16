@@ -88,7 +88,7 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
         super.onViewRecycled(holder);
         if(imagePicker.getImageLoader() != null){
             if (holder instanceof ImageViewHolder){
-                imagePicker.getImageLoader().onViewRecycled(((ImageViewHolder)holder).ivThumb);
+                imagePicker.getImageLoader().onViewRecycled(mActivity,((ImageViewHolder)holder).ivThumb);
             }
         }
     }
