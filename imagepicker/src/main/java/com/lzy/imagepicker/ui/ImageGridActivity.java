@@ -44,6 +44,7 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
     public static final int REQUEST_PERMISSION_CAMERA = 0x02;
     public static final String EXTRAS_TAKE_PICKERS = "TAKE";
     public static final String EXTRAS_IMAGES = "IMAGES";
+    public static final String EXTRA_DIRECT_BACK_APP = "DirectBackApp";
 
     private ImagePicker imagePicker;
 
@@ -59,6 +60,7 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
     private RecyclerView mRecyclerView;
     private ImageRecyclerAdapter mRecyclerAdapter;
     private SuperCheckBox mCbOrigin;
+    private boolean directBack2App = true;
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -87,6 +89,7 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
         Intent data = getIntent();
         if (data != null && data.getExtras() != null) {
             directPhoto = data.getBooleanExtra(EXTRAS_TAKE_PICKERS, false);
+            directBack2App = data.getBooleanExtra(EXTRA_DIRECT_BACK_APP, true);
             if (directPhoto) {
                 checkToCapture();
             }
@@ -348,6 +351,9 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
                         //https://github.com/CysionLiu/ImagePicker/issues/74
                         int result = getContentResolver().delete(imagePicker.getUri(), null, null);
                         Log.i("DEBUG",">>>>>>>>>>>>>>>>result = " + result);
+                    }
+                    if(directPhoto && directBack2App){
+                        finish();
                     }
                 }
             } else if (directPhoto) {
