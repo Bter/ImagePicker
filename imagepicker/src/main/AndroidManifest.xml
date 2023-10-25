@@ -8,6 +8,15 @@
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/><!--相册权限-->
     <uses-permission android:name="android.permission.CAMERA"/>
 
+    <queries>
+        <intent>
+            <action android:name="android.media.action.VIDEO_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE"/>
+        </intent>
+    </queries>
+
     <application>
         <activity
             android:name=".ui.FreeCropActivity"
