@@ -11,18 +11,11 @@ Android自定义相册，仿微信UI，实现了拍照、图片选择（单选/�
 
 ### 注意：Q版本的资源获取是通过ImageItem的uri,其它版本通过path
 
-### 注意：最新依赖库更新于2020-05-26
+### 注意：最新依赖库更新于2023-10-25
 
 
 对于Android Studio(建议用3.0版本+)的用户，可以选择添加:
 
-```
-使用androidx:
-    api 'com.github.Bter:ImagePicker:1.2.10'
-注意，Android Q 对存储框架有较大改动，最主要的是无法通过文件路径获得非*应用专有文件*。
-在本版本库中，也完全放弃了文件路径的方式，全部是以Uri的方式提供文件访问。
-
- ```
 
 [最新发布版本](https://github.com/Bter/ImagePicker/releases)
 
@@ -36,7 +29,10 @@ Android自定义相册，仿微信UI，实现了拍照、图片选择（单选/�
 ```
 
 //使用androidx，则需要这样添加依赖：
-api 'com.github.Bter:ImagePicker:1.2.10'
+api 'com.github.Bter:ImagePicker:1.2.11'
+
+注意，Android Q 对存储框架有较大改动，最主要的是无法通过文件路径获得非*应用专有文件*。
+在本版本库中，也完全放弃了文件路径的方式，全部是以Uri的方式提供文件访问。
 
 ---
 
@@ -188,6 +184,9 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 ```
 
 ## 更新日志
+V1.2.11
+* 适配Android13.
+
 V1.2.9
 * 修复预览页面状态栏被遮盖的问题。
 
