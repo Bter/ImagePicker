@@ -27,7 +27,7 @@ Android自定义相册，仿微信UI，实现了拍照、图片选择（单选/�
 在本版本库中，也完全放弃了文件路径的方式，全部是以Uri的方式提供文件访问。
 
 //使用androidx，则需要这样添加依赖：
-api 'com.github.Bter:ImagePicker:1.2.11'
+api 'com.github.Bter:ImagePicker:1.2.12'
 
 ---
 
