@@ -125,10 +125,14 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
         mCbOrigin.setChecked(imagePicker.isOrigin());
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN) {
-            if (checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+            if(Build.VERSION.SDK_INT >= 33 && Utils.getAppTargetSdkVersion(this) >= 33){
+                permission = Manifest.permission.READ_MEDIA_IMAGES;
+            }
+            if (checkPermission(permission)) {
                 new ImageDataSource(this, null, this);
             } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSION_STORAGE);
+                ActivityCompat.requestPermissions(this, new String[]{permission}, REQUEST_PERMISSION_STORAGE);
             }
         } else {
             new ImageDataSource(this, null, this);
@@ -148,9 +152,14 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
     }
 
     private void checkToCapture() {
-        if (!(checkPermission(Manifest.permission.CAMERA)) || !checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+        String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+        if(Build.VERSION.SDK_INT >= 33 && Utils.getAppTargetSdkVersion(this) >= 33){
+            permission = Manifest.permission.READ_MEDIA_IMAGES;
+        }
+
+        if (!(checkPermission(Manifest.permission.CAMERA)) || !checkPermission(permission)) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE}, ImageGridActivity.REQUEST_PERMISSION_CAMERA);
+                    permission}, ImageGridActivity.REQUEST_PERMISSION_CAMERA);
         } else {
             imagePicker.takePicture(this, ImagePicker.REQUEST_CODE_TAKE);
         }

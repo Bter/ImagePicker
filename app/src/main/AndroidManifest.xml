@@ -9,7 +9,10 @@
         android:supportsRtl="true"
         android:name=".GApp"
         android:theme="@style/AppTheme">
-        <activity android:name=".ImagePickerActivity">
+        <activity
+            android:name=".ImagePickerActivity"
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

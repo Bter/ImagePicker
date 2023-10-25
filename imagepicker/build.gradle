@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 //apply plugin: 'com.novoda.bintray-release'
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
 
     //图片选择器
     //https://github.com/CysionLiu/ImagePicker
@@ -11,7 +11,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 29
         versionCode 1
-        versionName "1.2.10"
+        versionName "1.2.11"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {

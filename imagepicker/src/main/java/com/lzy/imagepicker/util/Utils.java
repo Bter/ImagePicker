@@ -2,9 +2,13 @@ package com.lzy.imagepicker.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -126,6 +130,35 @@ public class Utils {
     public static void innerLog(String msg){
         if(false){
             Log.d("imagepicker--",msg);
+        }
+    }
+
+    /**
+     * Return the application's target sdk version code.
+     *
+     * @return the application's target sdk version code
+     */
+    public static int getAppTargetSdkVersion(Context context) {
+        return getAppTargetSdkVersion(context,context.getApplicationContext().getPackageName());
+    }
+
+    /**
+     * Return the application's target sdk version code.
+     *
+     * @param packageName The name of the package.
+     * @return the application's target sdk version code
+     */
+    public static int getAppTargetSdkVersion(Context context,final String packageName) {
+        if (TextUtils.isEmpty(packageName)) return -1;
+        try {
+            PackageManager pm = context.getApplicationContext().getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(packageName, 0);
+            if (null == pi) return -1;
+            ApplicationInfo ai = pi.applicationInfo;
+            return null == ai ? -1 : ai.targetSdkVersion;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            return -1;
         }
     }
 }

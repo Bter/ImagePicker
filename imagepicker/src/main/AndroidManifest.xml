@@ -5,6 +5,7 @@
     <!-- 往SDCard写入数据权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> <!-- 从SDCard读取数据权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> <!-- 相机权限 -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/><!--相册权限-->
     <uses-permission android:name="android.permission.CAMERA"/>
 
     <application>
